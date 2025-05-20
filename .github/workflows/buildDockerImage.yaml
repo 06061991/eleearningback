@@ -28,3 +28,4 @@ jobs:
           with:
             context: .
             push: true
+            tags: asslam1991/backend:1.1.${{ github.run_number }}

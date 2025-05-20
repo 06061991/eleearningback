@@ -29,3 +29,16 @@ jobs:
             context: .
             push: true
             tags: asslam1991/backend:1.1.${{ github.run_number }}
+        - name: Scan Docker image with Trivy
+          uses: aquasecurity/trivy-action@0.28.0
+          with:
+           image-ref: 'asslam1991/backend:1.1.${{ github.run_number }}'
+           format: 'table'
+           ignore-unfixed: true
+           vuln-type: 'os,library'
+           severity: 'CRITICAL,HIGH'
+           timeout: '20m'
+           trivy: 'image'
+           scanners: 'vuln'
+           debug: true
+           output: 'trivy-results.txt'
